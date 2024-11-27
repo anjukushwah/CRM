@@ -1,0 +1,238 @@
+.login-page { 
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #9c27b0, #64b5f6);
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.login-wrapper {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    width: 100%;
+}
+
+
+.login-container {
+    display: flex; 
+    flex-direction: column; 
+    max-width: 800px;
+    width: 100%;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    border-radius: 6px;
+    margin: 0 auto;
+    gap: 40px; 
+}
+
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 40px; 
+    padding: 20px;
+}
+
+
+.logo {
+    width: 150px;
+    height: auto;
+}
+
+form {
+    max-width: 400px;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login-heading {
+    text-align: center;
+    margin-bottom: 20px; 
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.login-label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.login-input-container {
+    position: relative;
+    width: 100%;
+}
+
+.login-input-container i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #57d5d9;
+    font-size: 18px;
+}
+
+.login-input-container input {
+    width: 100%;
+    padding: 12px 45px 12px 40px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    height: 50px;
+    box-sizing: border-box;
+}
+
+.login-input-container input:focus {
+    outline: none;
+    border-color: #64b5f6;
+}
+
+
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    background: linear-gradient(to right, #9c27b0, #64b5f6);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+.login-forgot-password {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.login-forgot-password a {
+    color: #64b5f6;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Existing CSS stays the same */
+
+.signup-option {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .signup-option a {
+    color: #64b5f6;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .signup-option a:hover {
+    text-decoration: none;
+  }
+  
+
+
+@media (max-width: 576px) {
+
+    .login-page {
+        background-attachment: fixed  !important;
+        overflow: hidden !important;
+    }
+
+    .login-container {
+        flex-direction: column; 
+        gap: 0px !important;
+    }
+
+    
+    .logo-container {
+    padding: 10px;
+   }
+
+
+    .logo {
+        width: 140px; 
+    }
+
+    .login-heading {
+        font-size: 28px; 
+        margin-bottom: 15px;
+    }
+
+    .login-input-container input {
+        padding: 10px 40px;
+        font-size: 14px;
+    }
+
+    .login-btn {
+        padding: 12px; 
+        font-size: 16px; 
+    }
+
+    .login-forgot-password {
+        text-align: center; 
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) { 
+
+    .login-container {
+        flex-direction: row; 
+        justify-content: space-between;
+        align-items: center;
+        padding: 60px;
+        max-width: 800px; 
+        height: auto; 
+        border-radius: 10px;
+    }
+
+    .logo-container {
+        padding: 40px;
+    }
+
+
+    .logo {
+        width: 200px;
+       
+    }
+}
+
+@media (min-width: 1025px) {
+     
+    .login-container {
+        flex-direction: row; 
+        align-items: center;
+        padding: 50px; 
+        max-width: 800px; 
+        height: auto; 
+        border-radius: 10px;
+    }
+
+    .logo {
+        width: 220px;
+    }   
+
+    .form-wrapper {
+        margin-left: 5rem;
+    }
+
+}
+ 
