@@ -10,10 +10,11 @@ const Calendar = () => {
 
   
     const meetings = [
-        { date: '2024-12-01', time: '9:00 AM - 9:40 AM', description: 'Kick-off meeting', status: 'Scheduled', participant: 'Emily' },
-        { date: '2024-12-05', time: '11:00 AM - 11:40 AM', description: 'Budget discussion', status: 'In Progress', participant: 'Michael' },
-        { date: '2024-12-07', time: '2:30 PM - 3:10 PM', description: 'Team briefing', status: 'Complete', participant: 'Sophie' },
-    ];
+        { date: '01 Dec 2024', time: '9:00 AM - 9:40 AM', description: 'Kick-off meeting', status: 'Scheduled', participant: 'Emily' },
+        { date: '05 Dec 2024', time: '11:00 AM - 11:40 AM', description: 'Budget discussion', status: 'In Progress', participant: 'Michael' },
+        { date: '10 Dec 2024', time: '2:00 PM - 3:00 PM', description: 'Project Review', status: 'Scheduled', participant: 'Sophia' },
+        { date: '15 Dec 2024', time: '4:30 PM - 5:15 PM', description: 'Final Presentation', status: 'Completed', participant: 'Daniel' },
+       ];
 
     const navigate = useNavigate();
 
@@ -97,32 +98,32 @@ const Calendar = () => {
                             })}
                         </div>
                     </div>
-
-                    
-                    <div className="meeting-details">
-                        <h3 className="meeting-heading">Meeting Schedule</h3>
-                        <div className="meeting-details-div">
-                            {meetings.slice(0, 3).map((meeting, index) => (
-                                <div key={index} className="meeting-info">
-                                    <div className="meeting-time">
-                                        <div className="circle-icon"></div>
-                                        <span className="meeting-time-label">{meeting.time}</span>
-                                        <div className="meeting-side-div">
-                                            <div className="meeting-side-div-row">
-                                                <span className="meeting-side-name">{meeting.participant}</span>
-                                                <span className="meeting-side-date">{meeting.date}</span>
-                                            </div>
-                                            <button className="in-progress-btn">{meeting.status}</button>
-                                            <button className="complete-btn">Complete</button>
-                                        </div>
-                                        <div className="vertical-border"></div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                 <div className="meeting-details">
+  <h3 className="meeting-heading">Meeting Schedule</h3>
+  <div className="meeting-details-div">
+    {meetings.map((meeting, index) => (
+      <div key={index} className="meeting-info">
+        <div className="circle-icon"></div>
+        <div className="meeting-time">
+          <span className="meeting-time-label">{meeting.time}</span>
+          <div className="vertical-border"></div>
+        </div>
+        <div className="meeting-side-div">
+          <div className="meeting-side-div-row">
+            <span className="meeting-side-name">{meeting.participant}</span>
+            <span className="meeting-side-date">{meeting.date}</span>
+          </div>
+          {/* Wrap buttons inside a container with class meeting-buttons */}
+          <div className="meeting-buttons">
+            <button className="in-progress-btn">In Progress</button>
+            <button className="complete-btn">Complete</button>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
                 </div>
-
+                </div>
                 <div className={`add-meeting-icon ${lastMeetingDate ? 'after-last-meeting' : ''}`} onClick={redirectToAddMeeting} title="Add Meeting">
                     &#x002B;
                 </div>
