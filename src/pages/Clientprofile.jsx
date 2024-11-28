@@ -71,7 +71,7 @@ const closePopup = () => {
   setIsAssetClassPopupVisible(false);
 };
 
-// Handle options selection in the popup (track selected checkboxes)
+
 const handlePopupOptionChange = (e) => {
   const { value, checked } = e.target;
   if (checked) {
@@ -110,19 +110,19 @@ const handleCancel = () => {
 };
 
 
-  // Toggle dropdown visibility
+ 
   const toggleDropdown = () => {
     console.log("Toggling dropdown...", isDropdownVisible);  
     setIsDropdownVisible(prevState => !prevState); 
   };
 
-  // Handle selecting an age from the dropdown
+
   const handleAgeSelect = (age) => {
     setSelectedAge(age);
     setIsDropdownVisible(false); 
   };
 
-  // Handle click outside the dropdown to close it
+  
   const handleClickOutside = (e) => {
     const dropdown = document.getElementById('dropdown-popup');
     if (dropdown && !dropdown.contains(e.target)) {
@@ -146,30 +146,38 @@ const handleSubmit = (e) => {
 
 return (
   <form className="clientprofile-form" onSubmit={handleSubmit}>
-    <div className="clientprofile-profile-section">
+      <div className="clientprofile-profile-section">
     <div className="clientprofile-img">
-  <img
-    src={profileImage}
-    alt="client-profile"
-    className="client-profile"
-  />
-   </div>
-  <div className="clientprofile-details">
-  <div>
-  <p className='detailspara' ><strong>{formData.clientName || 'John Does'}</strong></p>
-  <p className='detailspara'>{formData.clientCity || 'Germany'}</p>
-  <p className='detailspara'>{formData.clientPhone || '1234567890'}</p>
-  </div>  
-  <div> 
-  <button type="button" className='new-button' >
-    New
-  </button>
-  <button type="button" className='edit-button'>
-    Edit
-  </button>
+      <img
+        src={profileImage}
+        alt="client-profile"
+        className="client-profile"
+      />
+    </div>
+    <div className="clientprofile-profile-section">
+        <div className="clientprofile-img">
+          <img
+            src="profileImage"
+            alt="client-profile"
+            className="client-profile"
+          />
+        </div>
+
+        <div className="clientprofile-details">
+          <div>
+            <p className="detailspara">
+              <strong>{formData.clientName || "John Does"}</strong>
+            </p>
+            <p className="detailspara">{formData.clientCity || "Germany"}</p>
+            <p className="detailspara">{formData.clientPhone || "1234567890"}</p>
+            <div className="buttons-container">
+              <button className="new-btn">New</button>
+              <button className="edit-btn">Edit</button>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
-   </div>
-     </div>
    <div className="clientprofile-input-group">
       <label className="clientprofile-label">Client Age</label>
       <select

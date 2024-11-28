@@ -151,6 +151,7 @@ form {
 
 @media (max-width: 576px) {
 
+
     .login-page {
         background-attachment: fixed  !important;
         overflow: hidden !important;
@@ -159,6 +160,7 @@ form {
     .login-container {
         flex-direction: column; 
         gap: 0px !important;
+        width: 90% !important;
     }
 
     
@@ -199,7 +201,7 @@ form {
         justify-content: space-between;
         align-items: center;
         padding: 60px;
-        max-width: 800px; 
+        width: 90% !important;
         height: auto; 
         border-radius: 10px;
     }

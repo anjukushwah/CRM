@@ -156,20 +156,20 @@ function AddEditMeetingPage() {
           <label className="addeditmeeting-label" htmlFor="clock">Time:</label>
           <div className="clock-container">
             <div id="clock" className='clockedit'></div>
-            <div className="mat-card">
-              <button className="setclearbutton" onClick={handleSetClick}>
+          </div>
+          <div className="mat-card">
+              <button className="setbtn" onClick={handleSetClick}>
                 Set
               </button>
-              <button className="setclearbutton" onClick={handleClearClick}>
+              <button className="clearbtn" onClick={handleClearClick}>
                 Clear
               </button>
             </div>
             <div className="mat-card">
-              <h4 style={{ marginBottom: '0px', fontSize: '30px' }}>
+              <h4 style={{ marginBottom: '0px', marginRight: '80px', fontSize: '20px' }}>
                 {timeSet ? `Selected Time = ${hour} : ${minute}` : 'No time selected'}
               </h4>
             </div>
-          </div>
         </div>
 
 
@@ -210,15 +210,15 @@ function AddEditMeetingPage() {
           />
         </div>
 
+        <div>
+  <button className="addmeeting-button sub-button" onClick={handleSetClick}>
+    Submit
+  </button>
+  <button className="addmeeting-button edit-button" onClick={handleClearClick}>
+    Edit
+  </button>
+</div>
 
-            <div>
-              <button className="new-button" onClick={handleSetClick}>
-                Submit
-              </button>
-              <button className="edit-button" onClick={handleClearClick}>
-                edit
-              </button>
-            </div>
 
       </div>
     </div>

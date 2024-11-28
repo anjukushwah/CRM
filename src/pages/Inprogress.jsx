@@ -4,19 +4,22 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Inprogress = () => {
-    // State initialization
     const [clientData, setClientData] = useState({
-        totalClientAUM: [],
-        product: "",
+        agenda: [],
+        product: [],
+        meetingStatus: "",
         clientGoal: "",
         clientOccupation: "",
         firstSIPDate: null,
         followUpTime: "",
+        showPopup: false,
+        selectedField: "",
+        temporaryProductSelection: [],
     });
 
     const handleCheckboxChange = (e) => {
         const { value, checked } = e.target;
-        let updatedValues = [...clientData.totalClientAUM];
+        let updatedValues = [...clientData.temporaryProductSelection];
         if (checked) {
             updatedValues.push(value);
         } else {
@@ -24,128 +27,209 @@ const Inprogress = () => {
         }
         setClientData((prevData) => ({
             ...prevData,
-            totalClientAUM: updatedValues,
+            temporaryProductSelection: updatedValues,
         }));
     };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setClientData({
-            ...clientData,
+        setClientData((prevData) => ({
+            ...prevData,
             [name]: value,
-        });
+        }));
+    };
+
+    const togglePopup = (field) => {
+        setClientData((prevData) => ({
+            ...prevData,
+            showPopup: !prevData.showPopup,
+            selectedField: field,
+            temporaryProductSelection: prevData[field] || [],
+        }));
+    };
+
+    const handleSave = () => {
+        if (clientData.selectedField) {
+            setClientData((prevData) => ({
+                ...prevData,
+                [prevData.selectedField]: prevData.temporaryProductSelection,
+                showPopup: false,
+            }));
+        }
+    };
+
+    const handleCancel = () => {
+        setClientData((prevData) => ({
+            ...prevData,
+            temporaryProductSelection: [],
+            showPopup: false,
+        }));
+    };
+
+    const handleSelection = (item) => {
+        setClientData((prevData) => ({
+            ...prevData,
+            [prevData.selectedField]: item,
+            showPopup: false,
+        }));
     };
 
     return (
-        <div className="inprogress-container">
-            <div className="inprogress-details">
-                <div className="inprogress-row">
-                    <div className="inprogress-field">
-                        <label className="inprogress-label">Meeting Status:</label>
-                        <select
-                            name="totalClientAUM"
-                            value={clientData.totalClientAUM}
-                            onChange={handleInputChange}
-                            className="inprogress-input inprogress-dropdown"
-                        >
-                            <option value="">Select Status</option>
-                            <option value="300000">Close</option>
-                            <option value="100000">In progress from client side</option>
-                            <option value="200000">In progress from my side</option>
-                            <option value="500000">Others</option>
-                        </select>
-                    </div>
+        <div className="inprogress-page-container">
+            <form action="" className="inprogress-form">
+            <div className="inprogress-page-details">
+            
+                <div className="inprogress-page-row">
+                    <label className="inprogress-page-label">Meeting Status:</label>
+                    <input
+                        type="text"
+                        name="meetingStatus"
+                        value={clientData.meetingStatus || "Click to select status"}
+                        onClick={() => togglePopup("meetingStatus")}
+                        className="inprogress-page-input"
+                        readOnly
+                    />
                 </div>
 
-                <div className="inprogress-row">
-                    <label className="inprogress-label">Meeting Agenda:</label>
-                    <div className="inprogress-checkbox-group">
-                        {["Portfolio", "New Business", "Services", "Task by BA"].map((agenda) => (
-                            <label key={agenda}>
-                                <input
-                                    type="checkbox"
-                                    name="totalClientAUM"
-                                    value={agenda}
-                                    checked={clientData.totalClientAUM.includes(agenda)}
-                                    onChange={handleCheckboxChange}
-                                />
-                                &nbsp;{agenda}
-                            </label>
-                        ))}
-                    </div>
+                {/* Meeting Agenda */}
+                <div className="inprogress-page-row">
+                    <label className="inprogress-page-label">Meeting Agenda:</label>
+                    <input
+                        type="text"
+                        name="agenda"
+                        value={clientData.agenda.join(", ") || "Click to select an agenda"}
+                        onClick={() => togglePopup("agenda")}
+                        className="inprogress-page-input"
+                        readOnly
+                    />
                 </div>
 
-                <div className="inprogress-row">
-                    <label className="inprogress-label">Products:</label>
-                    <div className="inprogress-radio-group">
-                        {["Mutual Funds", "Fixed Deposit", "Insurance", "Others"].map((product) => (
-                            <label key={product}>
-                                <input
-                                    type="radio"
-                                    name="product"
-                                    value={product}
-                                    checked={clientData.product === product}
-                                    onChange={handleInputChange}
-                                />
-                                &nbsp;{product}
-                            </label>
-                        ))}
-                    </div>
+                {/* Products */}
+                <div className="inprogress-page-row">
+                    <label className="inprogress-page-label">Products:</label>
+                    <input
+                        type="text"
+                        name="product"
+                        value={clientData.product.join(", ") || "Click to select a product"}
+                        onClick={() => togglePopup("product")}
+                        className="inprogress-page-input"
+                        readOnly
+                    />
                 </div>
 
-                <div className="inprogress-row">
-                    <div className="inprogress-field">
-                        <label className="inprogress-label">Conveyance Amount:</label>
-                        <input
-                            type="text"
-                            name="clientGoal"
-                            placeholder="Amount in INR"
-                            value={clientData.clientGoal}
-                            onChange={handleInputChange}
-                            className="inprogress-input"
-                        />
-                    </div>
-                    <div className="inprogress-field">
-                        <label className="inprogress-label">Remark:</label>
-                        <input
-                            type="text"
-                            name="clientOccupation"
-                            placeholder="Share your remark here..."
-                            value={clientData.clientOccupation}
-                            onChange={handleInputChange}
-                            className="inprogress-input"
-                        />
-                    </div>
+                {/* Other fields */}
+                <div className="inprogress-page-row">
+                    <label className="inprogress-page-label">Conveyance Amount:</label>
+                    <input
+                        type="text"
+                        name="clientGoal"
+                        placeholder="Amount in INR"
+                        value={clientData.clientGoal}
+                        onChange={handleInputChange}
+                        className="inprogress-page-input"
+                    />
                 </div>
 
-                <div className="inprogress-row">
-                    <div className="inprogress-field">
-                        <label className="inprogress-label">Follow-up Date:</label>
+                <div className="inprogress-page-row">
+                    <label className="inprogress-page-label">Remark:</label>
+                    <input
+                        type="text"
+                        name="clientOccupation"
+                        placeholder="Share your remark here..."
+                        value={clientData.clientOccupation}
+                        onChange={handleInputChange}
+                        className="inprogress-page-input"
+                    />
+                </div>
+
+                <div className="inprogress-page-row">
+                    <div className="inprogress-page-field">
+                        <label className="inprogress-page-label">Follow-up Date:</label>
                         <DatePicker
                             selected={clientData.firstSIPDate}
-                            onChange={(date) => handleInputChange({ target: { name: "firstSIPDate", value: date } })}
-                            className="inprogress-datepicker"
+                            onChange={(date) =>
+                                setClientData((prevData) => ({
+                                    ...prevData,
+                                    firstSIPDate: date,
+                                }))
+                            }
+                            className="inprogress-page-input full-width-datepicker"
                             dateFormat="yyyy-MM-dd"
                             placeholderText="Select a date"
-                            popperPlacement="bottom"
                         />
                     </div>
-                    <div className="inprogress-field">
-                        <label className="inprogress-label">Follow-up Time:</label>
+                    <div className="inprogress-page-field">
+                        <label className="inprogress-page-label">Follow-up Time:</label>
                         <input
                             type="time"
                             name="followUpTime"
                             value={clientData.followUpTime}
                             onChange={handleInputChange}
-                            className="inprogress-input"
+                            className="inprogress-page-input"
                         />
                     </div>
                 </div>
 
-                <div className="inprogress-row">
-                    <button className="inprogress-submit-button">Submit</button>
+                <div className="inprogress-page-row">
+                    <button className="inprogress-page-submit-button">Submit</button>
                 </div>
             </div>
+            </form>
+            {/* Popup */}
+            {clientData.showPopup && (
+                <div className="inprogress-page-popup">
+                    <div className="inprogress-page-popup-content">
+                        <ul>
+                            {clientData.selectedField === "agenda"
+                                ? ["Portfolio", "New Business", "Services", "Task by BA"].map(
+                                      (item, index) => (
+                                          <li key={index}>
+                                              <label>
+                                                  <input
+                                                      type="checkbox"
+                                                      value={item}
+                                                      checked={clientData.temporaryProductSelection.includes(item)}
+                                                      onChange={handleCheckboxChange}
+                                                  />
+                                                  {item}
+                                              </label>
+                                          </li>
+                                      )
+                                  )
+                                : clientData.selectedField === "product"
+                                ? ["Mutual Funds", "Fixed Deposit", "Insurance", "Others"].map(
+                                      (item, index) => (
+                                          <li key={index}>
+                                              <label>
+                                                  <input
+                                                      type="checkbox"
+                                                      value={item}
+                                                      checked={clientData.temporaryProductSelection.includes(item)}
+                                                      onChange={handleCheckboxChange}
+                                                  />
+                                                  {item}
+                                              </label>
+                                          </li>
+                                      )
+                                  )
+                                : ["Completed", "Pending", "Rescheduled", "Cancelled"].map(
+                                      (item, index) => (
+                                          <li key={index} onClick={() => handleSelection(item)}>
+                                              {item}
+                                          </li>
+                                      )
+                                  )}
+                        </ul>
+                        {(clientData.selectedField === "agenda" ||
+                            clientData.selectedField === "product") && (
+                            <div className="inprogress-page-popup-buttons">
+                                <button className="inprogresspopup-btnsave" onClick={handleSave}>Save</button>
+                                <button className="inprogresspopup-btncancel" onClick={handleCancel}>Cancel</button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

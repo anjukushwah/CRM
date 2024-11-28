@@ -239,6 +239,12 @@ body {
 
 
 @media (max-width: 576px) {
+   
+  .page-container {
+    margin-bottom: 0px !important;
+  } 
+
+
   .footer-icons {
     width: 100%;
     justify-content: space-evenly;
@@ -1233,44 +1239,46 @@ body {
 
 
 /* Client Profile */
-.clientprofile-form {
-  width: 80%; 
-  max-width: 1400px; 
+
+ .clientprofile-form {
+  width: 80%;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   border-radius: 30px;
 }
 
-.clientprofile-details {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
+
 
 .clientprofile-profile-section {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+  flex-direction: row; 
+  justify-content: space-between; 
+  align-items: flex-start;
+  position: relative;
 }
 
 .clientprofile-img {
-  flex: 0 0 auto; 
-  margin-bottom: 20px;
+  flex: 0 0 auto;
+  margin-top: 30px;
 }
 
-.client-info {
-  margin-right: 80px !important;
-  font-size: 14px;
-  color: #333;
+.clientprofile-details {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: left;
+  background: #f9f9f9;
+  padding: 10px;
  
 }
 
 .client-info p {
-  margin-bottom: 3px;
+  margin-bottom: 8px;
+  font-size: 14px; 
+  color: #333;
 }
 
 
@@ -1281,17 +1289,53 @@ body {
   border-radius: 50%;
 }
 
+
+.clientprofile-details .buttons-container {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.new-btn, .edit-btn {
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.new-btn {
+  background: linear-gradient(to right, #64b5f6, #9c27b0);
+  color: white;
+  border: none;
+}
+
+.edit-btn {
+  background: linear-gradient(to right, #64b5f6, #9c27b0);
+  color: white;
+  border: none;
+}
+
+
+.client-info {
+  flex-grow: 1;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
 .clientprofile-input:focus,
 .clientprofile-input-group select:focus,
 .clientprofile-input-group input[type="text"]:focus,
 .clientprofile-input-group input[type="date"]:focus {
-  outline: none; 
-  border: none; 
-  border-bottom: 2px solid transparent; 
+  outline: none;
+  border: none;
+  border-bottom: 2px solid transparent;
   border-image: linear-gradient(to right, #64b5f6, #9c27b0);
-  border-image-slice: 1; 
+  border-image-slice: 1;
 }
-
 
 .clientprofile-label {
   font-size: 1.1rem;
@@ -1302,21 +1346,9 @@ body {
   display: block;
 }
 
-.edit-button, .new-button { 
-  display: inline-block;
-  margin: 5px 6px; 
-  background: linear-gradient(to right, #64b5f6, #9c27b0); 
-  border: none;
-  color: white;
-  font-size: 15px;
-  padding: 8px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s ease;
-  letter-spacing: 0.2vh;
-}
 
-.edit-button:hover, .new-button:hover {
+.edit-button:hover,
+.new-button:hover {
   background: linear-gradient(to right, #9c27b0, #64b5f6);
 }
 
@@ -1328,16 +1360,12 @@ body {
   border-image: linear-gradient(to right, #9c27b0, #64b5f6);
   border-image-slice: 1;
   font-size: 16px;
- /*  transition: border-bottom 0.3s;
-  background-color: transparent; */
 }
-
 
 .detailspara {
   margin-right: 72px !important;
   margin-bottom: 3px !important;
- }
-
+}
 
 .clientprofile-input,
 .clientprofile-input-group select,
@@ -1360,7 +1388,6 @@ body {
   margin-right: 8px;
 }
 
-
 .clientprofile-input-group .checkbox-group {
   display: flex;
   flex-wrap: wrap;
@@ -1368,17 +1395,18 @@ body {
 }
 
 .save-btn {
-  width: 20%;
-  padding: 12px;
+  padding: 10px 20px;
   background: linear-gradient(to right, #9c27b0, #64b5f6);
   color: white;
   border: none;
   border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
-  display: block; 
-  margin: 20px auto 0;
+  margin: 15px auto 0;  
+  width: 20%;  
+  display: block;
 }
+
 
 .clientprofile-popup {
   position: fixed;
@@ -1397,29 +1425,28 @@ body {
   background: white;
   padding: 20px;
   border-radius: 5px;
-  width: 320px;  
+  width: 320px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-height: 80%; 
-  overflow-y: auto; 
+  max-height: 80%;
+  overflow-y: auto;
 }
-
 
 .clientprofilepopup-content label {
   display: flex;
-  align-items: center; 
-  margin: 18px 0; 
+  align-items: center;
+  margin: 18px 0;
   font-size: 14px;
   color: #000;
   font-weight: 500;
 }
 
 .clientprofilepopup-content label span {
-  margin-left: 10px; 
+  margin-left: 10px;
 }
 
 .clientprofile-popup-buttons {
   display: flex;
-  gap: 10px; 
+  gap: 10px;
   margin-top: 20px;
 }
 
@@ -1436,11 +1463,9 @@ body {
   transition: background-color 0.3s ease;
 }
 
-
 .clientprofilepopup-content input[type="checkbox"] {
-  accent-color: #e17ef3; 
+  accent-color: #e17ef3;
 }
-
 
 .clientprofile-popup-btn:focus {
   outline: none;
@@ -1450,207 +1475,416 @@ body {
 
 @media (max-width: 576px) {
 
+  .clientprofile-profile-section .client-profile {
+    width: 60px !important; 
+    height: 60px !important;
+    margin-bottom: 20px !important;
+  }
+
   .clientprofile-form {
-    width: 90% !important; 
-    max-width: 1400px; 
+    width: 90% !important;
+    max-width: 1400px;
   }
 
   .clientprofile-profile-section {
-    flex-direction: row !important; 
-    align-items: right !important; 
+    flex-direction: row !important;  
+    align-items: flex-start !important;
   }
 
-  .clientprofile-details {
-    flex-grow: 1; 
-
+  .clientprofile-img {
+    margin-right: 20px !important; 
+    margin-bottom: 0 !important;
   }
 
-  .edit-button, .new-button { 
-    display: inline-block;
-    margin: 4px 4px !important; 
+
+  .client-info {
+    margin-right: 0px !important;
+    font-size: 16px !important;
+  }
+
+   .detailspara {
+    margin-right: 56px !important;
+    font-size: 12px !important;
+  }
+
+  .edit-button,
+  .new-button {
+    margin: 4px 4px !important;
     font-size: 14px;
     padding: 6px 15px;
-   
   }
-    
-  .detailspara {
-   margin-right: 56px !important;
-   margin-bottom: 3px !important;
-    font-size: 14px;
-    color: #333; 
+
+  .new-btn, .edit-btn {
+    padding: 7px 14px !important;
+    font-size: 0.7rem !important;
+    border-radius: 3px !important;
   }
   
-  .clientprofile-img {
-    margin-bottom: 0px !important;
-  }  
+  .save-btn {
+    width: 50% !important;
+    padding: 12px;
+  }
+
+  .clientprofile-details .buttons-container {
+     margin-top: 0px !important;
+     gap: 4px !important;
+  }
   
+ 
 }
 
-
 @media (max-width: 768px) {
-
   .clientprofile-form {
-    width: 90% !important; 
-    max-width: 1400px; 
+    width: 90% !important;
+    max-width: 1400px;
   }
 
   .clientprofile-profile-section {
     flex-direction: row !important; 
-    align-items: right !important; 
+    align-items: flex-start !important;
+  }
+   
+  
+  .save-btn {
+    width: 50% !important;
+    padding: 12px;
   }
 
 
+
   .clientprofile-img {
-    margin-right: 0;
-    margin-bottom: 10px;
+    margin-right: 20px !important;
+    margin-bottom: 0 !important;
   }
 
   .clientprofile-profile-section .client-profile {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
   }
-    
+
+  .client-info {
+    margin-right: 0px !important;
+    font-size: 16px !important;
+  }
 }
 
 
-.dropdown-popup {
-  /* display: block !important; */
-  position: absolute;
-  background-color: rgb(185, 9, 9);
-  border: 1px solid #ccc;
-  width: 100%;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-}
-
-
+ 
   /* Inprogress  Page */
+ 
+ .inprogress-page-container {
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inprogress-form {
   
-  .inprogress-container {
+    width: 80%; 
+    max-width: 1400px; 
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
+    border-radius: 30px;
+  
 }
 
-.inprogress-row {
-    margin-bottom: 20px;
+
+.inprogress-page-row {
+  margin-bottom: 20px;
 }
 
-.inprogress-label {
-    display: block;
-    font-size: 16px; 
-    font-weight: bold;  
-    margin-bottom: 10px;  
-    color: #333;
+.inprogress-page-label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
 }
 
-.inprogress-input,
-.inprogress-datepicker,
-.inprogress-timepicker {
+.inprogress-page-input,
+.inprogress-page-datepicker,
+.inprogress-page-timepicker {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(to right, #9c27b0, #64b5f6);
+  border-image-slice: 1;
+  outline: none;
+  background-color: transparent;
+  transition: border-color 0.3s ease-in-out;
+  margin-bottom: 15px;
+}
+
+.inprogress-page-input:focus,
+.inprogress-page-datepicker:focus,
+.inprogress-page-timepicker:focus {
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, #9c27b0, #64b5f6);
+  border-image-slice: 1;
+  outline: none;
+}
+
+.inprogress-page-submit-button {
+  display: block;
+  width: 50%; 
+  padding: 14px;
+  background: linear-gradient(to right, #9c27b0, #64b5f6); 
+  color: #fff;
+  border: none;
+  border-radius: 4px; 
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  text-align: center;
+  margin: 0 auto; 
+}
+
+
+.inprogress-page-submit-button:hover {
+  background: linear-gradient(to right, #64b5f6, #9c27b0);
+}
+
+.inprogress-page-submit-button:focus {
+  outline: none;
+}
+
+.inprogress-page-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.inprogress-page-popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 320px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 80%;
+  overflow-y: auto;
+  text-align: left;
+}
+
+
+.clientage-popup {
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.clientage-popup select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+
+.inprogress-page-popup-content label {
+  display: flex;
+  align-items: center;
+  margin: 18px 0;
+  font-size: 14px;
+  color: #000;
+  font-weight: 500;
+}
+
+.inprogress-page-popup-content input[type="checkbox"] {
+  margin-right: 10px;
+  accent-color: #e17ef3;
+}
+
+.inprogress-page-popup-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.inprogress-page-popup-content li {
+  margin-bottom: 10px;
+}
+
+
+.inprogress-page-popup-buttons {
+  display: flex; 
+  gap: 10px;
+  justify-content: flex-end; 
+  margin-top: 10px;
+}
+
+.inprogresspopup-btnsave,
+.inprogresspopup-btncancel {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  background: linear-gradient(to right, #9c27b0, #64b5f6);
+  color: white;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container input {
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
+}
+
+.full-width-datepicker {
     border: none;
     border-bottom: 2px solid transparent;
     border-image: linear-gradient(to right, #9c27b0, #64b5f6);
     border-image-slice: 1;
-    outline: none;
+    padding: 10px;
+    font-size: 16px;
     background-color: transparent;
+    outline: none;
     transition: border-color 0.3s ease-in-out;
-    margin-bottom: 15px;
 }
 
-.inprogress-input:focus,
-.inprogress-datepicker:focus,
-.inprogress-timepicker:focus {
+.full-width-datepicker:focus {
     border-bottom: 2px solid;
     border-image: linear-gradient(to right, #9c27b0, #64b5f6);
     border-image-slice: 1;
     outline: none;
 }
 
-.inprogress-checkbox-group,
-.inprogress-radio-group {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 15px;
-}
 
-.inprogress-checkbox-group label,
-.inprogress-radio-group label {
-    display: flex;
-    align-items: center;
-    font-size: 16px; 
-    font-weight: bold;  
-    color: #555;
-}
+@media (max-width: 576px) {
 
-.inprogress-checkbox-group input,
-.inprogress-radio-group input {
-    margin-right: 8px;
-}
+  .inprogress-form {
+    width: 90% !important; 
+    max-width: 1400px; 
+    margin-top: 0px !important;
+  }
 
-.inprogress-checkbox-group input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    appearance: none;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    outline: none;
-    cursor: pointer;
-    transition: background 0.3s;
-}
+  .inprogress-page-container {
+    padding: 0px !important;
+    
+  }
 
-.inprogress-checkbox-group input[type="checkbox"]:checked {
-    background: linear-gradient(45deg, #9c27b0, #64b5f6);
-    border: none;
-}
-
-.inprogress-radio-group input[type="radio"] {
-    width: 18px;
-    height: 18px;
-    appearance: none;
-    border: 2px solid #ccc;
-    border-radius: 50%;
-    outline: none;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.inprogress-radio-group input[type="radio"]:checked {
-    background: linear-gradient(45deg, #9c27b0, #64b5f6);
-    border: none;
-}
-
-.inprogress-submit-button {
+  .inprogress-page-submit-button {
     display: block;
-    width: 100%;
+    width: 50% !important; 
     padding: 14px;
-    background: linear-gradient(to right, #9c27b0, #64b5f6);
+    background: linear-gradient(to right, #9c27b0, #64b5f6); 
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 4px; 
     font-size: 16px;
     cursor: pointer;
-    margin-top: 20px;
     transition: background 0.3s ease-in-out;
     text-align: center;
-}
-
-.inprogress-submit-button:hover {
-    background: linear-gradient(to right, #64b5f6, #9c27b0);
-}
-
-.inprogress-submit-button:focus {
-    outline: none;
-}
+   margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
   
+
+}  
+
+
+
+@media (max-width: 768px) {
+
+  .inprogress-form {
+    width: 90% !important; 
+    max-width: 1400px; 
+    margin-top: 40px !important;
+  }
+
+  .inprogress-page-container {
+    padding: 0px !important;
+  }
+
+  .inprogress-page-submit-button {
+    width: 60%;
+    margin: 30px auto 0;
+  }
+
+  .inprogress-page-popup-content {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .inprogress-page-popup-buttons {
+    flex-direction: column;
+  }
+
+  .inprogresspopup-btnsave,
+  .inprogresspopup-btncancel {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .inprogress-page-submit-button {
+    display: block;
+    width: 50% !important; 
+    padding: 14px;
+    background: linear-gradient(to right, #9c27b0, #64b5f6); 
+    color: #fff;
+    border: none;
+    border-radius: 4px; 
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    text-align: center;
+   margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
+}
+
+/* Tablets and iPads */
+@media (max-width: 1024px) {
+  .inprogress-form {
+    width: 85%;
+    padding: 20px;
+  }
+
+  .inprogress-page-submit-button {
+    width: 50%;
+    margin: 30px auto 0;
+    
+  }
+
+  .inprogress-page-popup-content {
+    width: 80%;
+    padding: 20px;
+  }
+
+  .inprogress-page-popup-buttons {
+    flex-direction: row;
+  }
+
+  .inprogresspopup-btnsave,
+  .inprogresspopup-btncancel {
+    width: 45%;
+  }
+}
+
 
 
 /* Inportant Meetings */
