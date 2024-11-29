@@ -1,10 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { timePicker } from 'analogue-time-picker';
 import '../css/style.css';
 import '../css/clock.css';
-import { FaPhoneSquareAlt } from "react-icons/fa";
-
+import { FaPhoneSquareAlt, FaTimesCircle } from "react-icons/fa"; 
 
 function AddEditMeetingPage() {
   const [clientName, setClientName] = useState('');
@@ -23,6 +21,9 @@ function AddEditMeetingPage() {
   const [meetingLocation, setMeetingLocation] = useState('');
   const [fromLocation, setFromLocation] = useState('');
   const [toLocation, setToLocation] = useState('');
+
+  const [showMeetingTypePopup, setShowMeetingTypePopup] = useState(false);
+
 
   useEffect(() => {
     setShowTime(
@@ -53,7 +54,17 @@ function AddEditMeetingPage() {
     setMinute('00');
     setTimeSet(false);
   }
+  
+  const handleMeetingTypeInputClick = () => {
+    setShowMeetingTypePopup(!showMeetingTypePopup);
+  };
 
+  // Handle selection for Meeting Type
+  const handleMeetingTypeSelectOption = (value) => {
+    setMeetingType(value); // Update the meetingType state
+    setShowMeetingTypePopup(false); // Close the popup after selection
+  };
+  
   return (
     <div className="addeditmeeting-wrapper">
       <div className="addeditmeeting-page-container">
@@ -67,21 +78,28 @@ function AddEditMeetingPage() {
             onChange={(e) => setSelectedDate(e.target.value)}
           />
         </div>
+        <div className="clientprofile-input-group">
+  <label className="clientprofile-label">Meeting Type</label>
+  <div className="clientprofile-input-container">
+    <input
+      className="clientprofile-input"
+      name="meetingType"
+      value={meetingType || 'Select Meeting Type'}  // Use meetingType state directly
+      onClick={handleMeetingTypeInputClick}
+      readOnly
+    />
+    {showMeetingTypePopup && (
+      <div className="clientprofile-page-popup">
+        <ul>
+          <li onClick={() => handleMeetingTypeSelectOption('In-person')}>In-person</li>
+          <li onClick={() => handleMeetingTypeSelectOption('Online')}>Online</li>
+          <li onClick={() => handleMeetingTypeSelectOption('Phone Call')}>Phone Call</li>
+        </ul>
+      </div>
+    )}
+  </div>
+</div>
 
-        <div className="addeditmeeting-meeting-type-container form-field">
-          <label className="addeditmeeting-label" htmlFor="meetingType">Meeting With:</label>
-          <select
-            className="addeditmeeting-input addeditmeeting-select"
-            id="meetingType"
-            value={meetingType}
-            onChange={(e) => setMeetingType(e.target.value)}
-          >
-            <option value="">Select</option>
-            <option value="new">New</option>
-            <option value="existing">Existing Event</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
 
         <div className="addeditmeeting-client-details-form">
           <div className="form-field">
@@ -172,7 +190,6 @@ function AddEditMeetingPage() {
             </div>
         </div>
 
-
         <div className="form-field">
           <label className="addeditmeeting-label" htmlFor="remark">Remark:</label>
           <textarea
@@ -217,8 +234,8 @@ function AddEditMeetingPage() {
   <button className="addmeeting-button edit-button" onClick={handleClearClick}>
     Edit
   </button>
+  <FaTimesCircle style={{ width: '20px', height: '20px', marginLeft: '8px', cursor: 'pointer' }} onClick={handleCancelClick} />
 </div>
-
 
       </div>
     </div>

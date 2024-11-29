@@ -188,11 +188,11 @@ body {
 }
 
 /* Footer  */
-.page-container {
+
+ .page-container {
   display: flex;
   flex-direction: column;
   min-height: 100%;
- 
 }
 
 .content {
@@ -211,7 +211,6 @@ body {
   height: 80px; 
   position: relative;
 }
-
 
 .footer-icons {
   display: flex;
@@ -236,13 +235,10 @@ body {
   margin-top: 4px; 
 }
 
-
 @media (max-width: 576px) {
-   
   .page-container {
     margin-bottom: 0px !important;
-  } 
-
+  }
 
   .footer-icons {
     width: 100%;
@@ -258,8 +254,8 @@ body {
   }
 }
 
-
 /* Popup styles */
+
 .popup {
   position: fixed;
   top: 0;
@@ -274,19 +270,63 @@ body {
 }
 
 .popup-content {
+  position: relative;
   background: white;
   padding: 20px;
-  width: 300px;
+  width: 800px; 
+  height: 550px;
+  margin-top: 60px;
   text-align: center;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 8px; 
+  border-radius: 8px;
+  overflow-y: hidden; 
 }
+
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 
 .popup-options {
   margin-top: 20px;
+  max-height: 380px; 
+  overflow-y: auto; 
+}
+
+.month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.month-display {
+  font-size: 18px;
+  font-weight: 600;
+  background: linear-gradient(to right, #9c27b0, #64b5f6); 
+  -webkit-background-clip: text; 
+  color: transparent; 
+}
+
+.arrow-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px; 
+  cursor: pointer;
+  color: linear-gradient(to right, #9c27b0, #64b5f6);
+  padding: 10px;
+  border-radius: 50%;
 }
 
 .popup-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 18px;
   padding: 12px;
   margin: 10px 0;
@@ -299,9 +339,6 @@ body {
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   font-weight: 600; 
-  background: linear-gradient(to right, #9c27b0, #64b5f6); 
-  -webkit-background-clip: text; 
-  color: transparent; 
 }
 
 .popup-option:hover {
@@ -315,10 +352,39 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.popup-option .popup-option-img {
+  width: 50px; 
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
 
 
+.popup-option .popup-option-add {
+  font-size: 12px; 
+  color: white; 
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: linear-gradient(to right, #64b5f6, #9c27b0);
+  border: 3px solid transparent;
+  background-image: linear-gradient(to right, #64b5f6, #9c27b0), linear-gradient(to right, #64b5f6, #9c27b0);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  z-index: 9999;
+  width: 25px;
+  height: 25px; 
+}
 
-/* Option Section */
+.popup-option .popup-option-add svg {
+  width: 15px; 
+  height: 15px;
+}
+
 .options-section {
   margin-top: 40px;
   text-align: center;
@@ -383,7 +449,60 @@ body {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
+  .popup-content {
+    position: relative;
+    background: white;
+    padding: 20px;
+    width: 300px; 
+    height: 400px;
+    margin-top: 20px !important;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 6px !important;
+    overflow-y: hidden; 
+  }
+
+  .popup-option .popup-option-img {
+    height: 30px !important;
+    width: 30px !important;
+    margin-right: 0px !important;
+  }
+  
+  .popup-option {
+    font-size: 14px !important;
+  }
+  
+  .popup-option .popup-option-add {
+    font-size: 10px !important; 
+    height: 20px !important; 
+    width: 20px !important; 
+  }
+
+  .arrow-btn {
+    font-size: 14px !important; 
+  }
+  
+  .month-display {
+    font-size: 16px !important;
+  }
+}
+
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .popup-content {
+    position: relative;
+    background: white;
+    padding: 20px;
+    width: 600px !important; 
+    height: 500px !important;
+    margin-top: 20px !important;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow-y: hidden; 
+  }
+
   .options-container {
     flex-direction: column; 
     align-items: center;
@@ -399,21 +518,45 @@ body {
   }
 }
 
-@media (max-width: 576px) {
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .popup-content {
+    width: 700px; 
+    height: 500px;
+  }
+
+  .options-container {
+    flex-direction: row; 
+    gap: 20px;
+  }
 
   .option-btn {
-    width: 90%; 
-  }
-  
-  .options-heading {
-    font-size: 20px; 
-    margin: 15px 20px; 
+    font-size: 16px;
+    padding: 10px 20px;
   }
 }
 
 
+@media (min-width: 769px) and (max-width: 820px) {
+  .popup-content {
+    width: 650px;
+    height: 480px;
+  }
+
+  .options-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .option-btn {
+    width: 45%; 
+    margin: 10px;
+  }
+}
+
 
 /* Home Page Section */
+
  .calendar-container {
   display: flex;
   flex-direction: column; 
@@ -518,166 +661,6 @@ body {
   text-align: center;
 }
 
-
-/* Parent Container */
-/* .meeting-details {
-  width: 100%;
-  margin: 0 auto;
-  height: auto;
-  border: 1px solid #ddd;
-  margin-top: 40px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  overflow: hidden; 
-}
-
-
-.meeting-heading {
-  font-size: 1.5rem;
-  margin-top: 10px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.meeting-details-div {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-
-.meeting-info {
-  display: flex;
-  flex-direction: row;
-  align-items: center; 
-  justify-content: space-between;
-  padding: 10px;
-  border-radius: 5px;
-  width: 100%; 
-  margin-left: 400px;
-  overflow: hidden;
-}
-
-
-.circle-icon {
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background-color: #9c27b0;
-  position: absolute;
-  left: 2px; 
-  top: 0; 
-  transform: translateX(-50%);
-  z-index: 1; 
-}
-
-
-.vertical-border {
-  position: absolute;
-  width: 3px;
-  height: 100%; 
-  background-color: #9c27b0;
-  left: 0;
-  top: 0; 
-}
-
-
-.meeting-time {
-  display: flex;
-  align-items: center;
-  position: relative;
-  flex: 1; 
-}
-
-.meeting-time-label {
-  margin-left: 20px; 
-  font-size: 14px;
-  font-weight: bold;
-  position: relative; 
-  top: 0; 
-  margin-bottom: 55px;
-}
-
-
-.meeting-side-div-row {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
-  margin-bottom: 10px;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-
-.meeting-side-name {
-  font-size: 14px;
-  color: #333;
-  font-weight: bold;
-}
-
-
-.meeting-side-date {
-  font-size: 14px;
-  color: #555;
-  font-weight: normal;
-}
-
-
-.meeting-side-div {
-  flex: 1; 
-  max-width: 300px; 
-  padding: 15px;
-  margin-left: 100px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  background-color: #fff;
-  border-radius: 5px;
-}
-
-
-.in-progress-btn,
-.complete-btn {
-  background: linear-gradient(to right, #9c27b0, #64b5f6);
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-  margin-right: 10px; 
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-
-.add-meeting-icon.after-last-meeting {
-  position: fixed;
-  bottom: 100px;
-  right: 20px;
-  font-size: 32px;
-  cursor: pointer;
-  width: 45px;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: #222222;
-  background: linear-gradient(to right, #64b5f6, #9c27b0);
-  border: 3px solid transparent;
-  background-image: linear-gradient(to right, #64b5f6, #9c27b0), linear-gradient(to right, #64b5f6, #9c27b0);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  z-index: 9999;
-}
-
-
-.complete-btn {
-  margin-right: 0;
-} */
-
-
-
 .meeting-heading {
   font-size: 1.8rem;
   margin: 20px auto;
@@ -686,7 +669,7 @@ body {
   color: #333;
 }
 
-/* Center meeting details container */
+
 .meeting-details {
   width: 80%;
   margin: 0 auto;
@@ -697,7 +680,7 @@ body {
   border-radius: 8px;
 }
 
-/* Meeting details section */
+
 .meeting-details-div {
   display: flex;
   flex-direction: column;
@@ -705,40 +688,111 @@ body {
   gap: 20px;
 }
 
-/* Individual meeting container */
+.meeting-info {
+  position: relative;
+}
+
+
+.edit-button-container {
+  display: none; 
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+
+.edit-button {
+  background-color: #4CAF50; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s ease;
+}
+
+
+.edit-button:hover {
+  background-color: #45a049; 
+  transform: scale(1.1);
+}
+
+
+.meeting-info:hover .edit-button-container {
+  display: block; 
+}
+
+
+.meeting-info {
+  position: relative;
+}
+
+
+.edit-button-container {
+  display: none; 
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+
+.edit-button {
+  background-color: #4CAF50; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s ease;
+}
+
+
+.edit-button:hover {
+  background-color: #45a049; 
+  transform: scale(1.1); 
+}
+
+
+.meeting-info:hover .edit-button-container {
+  display: block; 
+}  
+
+
 .meeting-info {
   display: flex;
   align-items: center;
-  width: 100%; /* Full width for meeting content */
-  padding: 15px 20px; /* Adjusted padding for spacing */
+  width: 100%; 
+  padding: 15px 20px; 
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   background-color: #fff;
-  margin-bottom: 10px; /* Add spacing between meeting items */
+  margin-bottom: 10px; 
 }
 .vertical-border {
   position: absolute;
-  width: 3px; /* Decreased width of the border */
-  height: 70%; /* Adjusted height to be proportional */
+  width: 3px; 
+  height: 70%; 
   background-color: #9c27b0;
-  left: 15px; /* Slightly increased spacing from the left */
-  top: 16%; /* Center the border vertically */
+  left: 15px; 
+  top: 16%; 
 }
 
 
 .circle-icon {
-  width: 12px; /* Adjust size for proportion */
+  width: 12px; 
   height: 12px;
   border-radius: 50%;
   background-color: #9c27b0;
   position: absolute;
-  left: 10.8px; /* Aligns with vertical border */
-  top: calc(9% + 10px); /* Adds 10px margin from the original position */
+  left: 10.8px; 
+  top: calc(9% + 10px); 
   z-index: 1;
 }
 
-/* Meeting time container */
+
 .meeting-time {
   flex: 1;
   display: flex;
@@ -753,7 +807,7 @@ body {
   color: #555;
 }
 
-/* Side content container */
+
 .meeting-side-div {
   display: flex;
   flex-direction: column;
@@ -785,7 +839,7 @@ body {
   margin-right: 65px;
 }
 
-/* Buttons container to display them side by side */
+
 .meeting-buttons {
   display: flex;
   gap: 10px;
@@ -858,40 +912,40 @@ body {
   }
 
   .meeting-details {
-    width: 100%; /* Full width for small screens */
-    padding: 10px; /* Adjust padding for small devices */
+    width: 100%; 
+    padding: 10px; 
   }
 
   .meeting-info {
-    flex-direction: column; /* Stack the content vertically for small screens */
-    padding: 8px; /* Reduce padding for smaller screens */
+    flex-direction: column; 
+    padding: 8px; 
   }
 
   .meeting-time {
-    margin-left: 0; /* Remove margin on small screens */
-    margin-top: 8px; /* Add some spacing between elements */
+    margin-left: 0; 
+    margin-top: 8px; 
   }
 
   .meeting-side-div {
-    max-width: 100%; /* Full width for side content */
-    margin-left: 0; /* Remove margin for small screens */
+    max-width: 100%; 
+    margin-left: 0; 
   }
 
   .meeting-side-div-row {
-    font-size: 12px; /* Smaller font size for mobile */
+    font-size: 12px; 
   }
 
   .meeting-side-name, .meeting-side-date {
-    font-size: 12px; /* Smaller font size for small devices */
+    font-size: 12px; 
     margin-left: 0;
     margin-right: 0;
   }
 
   .meeting-buttons {
-    display: flex; /* Use flexbox to align buttons */
-    flex-direction: row; /* Align buttons side by side */
-    gap: 8px; /* Space between buttons */
-    justify-content: flex-start; /* Align the buttons at the start */
+    display: flex;
+    flex-direction: row;
+    gap: 8px; 
+    justify-content: flex-start; 
   }
 
   .in-progress-btn,
@@ -903,8 +957,8 @@ body {
   .add-meeting-icon.after-last-meeting {
     width: 40px;
     height: 40px;
-    font-size: 24px; /* Adjust icon size for small screens */
-    bottom: 70px; /* Adjust button position */
+    font-size: 24px;
+    bottom: 70px; 
   }
 
   .circle-icon {
@@ -919,202 +973,152 @@ body {
 }
 
 
-
-
-/* Responsive design for Mobile (max-width: 768px) */
 @media (max-width: 768px) {
   .meeting-details {
-    width: 95%; /* Increase the width for mobile */
-    padding: 10px; /* Adjust padding for mobile screens */
+    width: 95%; 
+    padding: 10px; 
   }
 
   .meeting-info {
-    flex-direction: column; /* Stack the content vertically on mobile */
-    padding: 10px; /* Reduce padding for mobile */
+    flex-direction: column; 
+    padding: 10px; 
   }
 
   .meeting-time {
-    margin-left: 0; /* Remove margin for mobile */
-    margin-top: 10px; /* Add some spacing between elements */
+    margin-left: 0; 
+    margin-top: 10px; 
   }
 
   .meeting-side-div {
-    max-width: 100%; /* Full width for the side content */
-    margin-left: 0; /* Remove margin for mobile */
+    max-width: 100%; 
+    margin-left: 0; 
   }
 
   .meeting-side-div-row {
-    font-size: 12px; /* Reduce font size for smaller devices */
+    font-size: 12px;
   }
 
   .meeting-side-name, .meeting-side-date {
-    font-size: 12px; /* Smaller font for names and dates */
+    font-size: 12px;
     margin-left: 0;
     margin-right: 0;
   }
 
   .meeting-buttons {
-    flex-direction: column; /* Stack buttons vertically */
-    gap: 10px; /* Adjust spacing for vertical buttons */
+    flex-direction: column; 
+    gap: 10px;
   }
 
   .add-meeting-icon.after-last-meeting {
     width: 45px;
     height: 45px;
-    font-size: 28px; /* Adjust icon size for smaller screens */
-    bottom: 80px; /* Adjust button position for mobile */
+    font-size: 28px; 
+    bottom: 80px;
   }
 
   .circle-icon {
-    left: 10px; /* Align the circle icon */
-    top: 15px; /* Adjust position for better alignment on mobile */
+    left: 10px; 
+    top: 15px; 
   }
 }
 
-/* Responsive design for Tablet (min-width: 769px and max-width: 1024px) */
+
 @media (min-width: 769px) and (max-width: 1024px) {
   .meeting-details {
-    width: 90%; /* Adjust width for tablet */
-    padding: 15px; /* Adjust padding for tablet */
+    width: 90%; 
+    padding: 15px; 
   }
 
   .meeting-info {
-    flex-direction: row; /* Keep horizontal layout */
-    padding: 15px; /* Adjust padding for tablets */
+    flex-direction: row; 
+    padding: 15px; 
   }
 
   .meeting-time {
-    margin-left: 20px; /* Adjust margin for tablet */
+    margin-left: 20px; 
   }
 
   .meeting-side-div {
-    max-width: 80%; /* Adjust side content width */
-    margin-left: 20px; /* Add margin for better spacing */
+    max-width: 80%; 
+    margin-left: 20px; 
   }
 
   .meeting-side-div-row {
-    font-size: 14px; /* Adjust font size for tablet */
+    font-size: 14px; 
   }
 
   .meeting-side-name, .meeting-side-date {
-    font-size: 14px; /* Adjust font size */
+    font-size: 14px; 
     margin-left: 10px;
     margin-right: 10px;
   }
 
   .meeting-buttons {
-    gap: 15px; /* Adjust button spacing */
+    gap: 15px;
   }
 
   .add-meeting-icon.after-last-meeting {
     width: 50px;
     height: 50px;
-    font-size: 30px; /* Adjust icon size */
-    bottom: 90px; /* Adjust bottom position */
+    font-size: 30px; 
+    bottom: 90px; 
   }
 
   .circle-icon {
-    left: 11px; /* Adjust position for tablet */
-    top: 18px; /* Adjust vertical position */
+    left: 11px; 
+    top: 18px;
   }
 }
 
-/* Responsive design for Desktop (min-width: 1025px) */
+
 @media (min-width: 1025px) {
   .meeting-details {
-    width: 80%; /* Full width for desktop */
-    padding: 20px; /* Standard padding for desktop */
+    width: 80%; 
+    padding: 20px;
   }
 
   .meeting-info {
-    flex-direction: row; /* Horizontal layout */
-    padding: 20px; /* Standard padding */
+    flex-direction: row; 
+    padding: 20px;
   }
 
   .meeting-time {
-    margin-left: 30px; /* Keep standard spacing for desktop */
+    margin-left: 30px; 
   }
 
   .meeting-side-div {
-    max-width: 300px; /* Standard width */
-    margin-left: 30px; /* Maintain spacing */
+    max-width: 300px;
+    margin-left: 30px;
   }
 
   .meeting-side-div-row {
-    font-size: 14px; /* Standard font size */
+    font-size: 14px; 
   }
 
   .meeting-side-name, .meeting-side-date {
-    font-size: 14px; /* Standard font size */
+    font-size: 14px;
   }
 
   .meeting-buttons {
-    gap: 10px; /* Keep buttons spaced out horizontally */
+    gap: 10px;
   }
 
   .add-meeting-icon.after-last-meeting {
     width: 50px;
     height: 50px;
-    font-size: 32px; /* Standard icon size */
-    bottom: 100px; /* Keep bottom spacing consistent */
+    font-size: 32px;
+    bottom: 100px; 
   }
 
   .circle-icon {
-    left: 11px; /* Align position */
-    top: 18px; /* Adjust top positioning */
-  }
-}
-
-
-
-/* 
-@media (max-width: 768px) {
-
-  .calendar-container {
-    padding: 0px !important;
-  }
-
-  .meeting-details {
-      width: 90%;
-      padding: 15px;
-  }
-
-  .meeting-info {
-      margin-left: 150px; 
-      flex-direction: column; 
-      align-items: flex-start;
-  }
-
-  .meeting-time {
-      flex-direction: column;
-      align-items: flex-start;
-      margin-left: 0;
-  }
-
-  .meeting-time-label {
-      margin-left: 50px !important; 
-      margin-bottom: 15px; 
-  }
-
-  .meeting-side-div {
-      margin-left: 50px;
-      max-width: 100%;
-  }
-
-  .meeting-side-div-row {
-      flex-direction: column; 
-      align-items: flex-start;
-  }
-
-  .in-progress-btn,
-  .complete-btn {
-      width: 100%; 
-      margin-top: 5px;
+    left: 11px; 
+    top: 18px;
   }
 }
 
 
 /* Business Analytics */
+/* 
 .businessanalytics-container {
   grid-area: main;
   overflow-y: auto;
@@ -1337,7 +1341,6 @@ body {
 }
 
 
-/* Styling for the new stats container */
 .stats-container {
   display: flex;
   justify-content: space-between;
@@ -1455,6 +1458,174 @@ body {
       font-size: 12px; 
   }
 }
+
+ */
+
+/* Container styles */
+.businessanalytics-container {
+  background-color: #fff; /* White background for the main container */
+  padding: 20px;
+  text-align: center;
+  min-height: 100vh;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 10px; /* Rounded edges */
+  width: 100%; /* Ensures it takes full container width */
+  max-width: 1200px; /* Sets a maximum width like a container */
+  margin: 0 auto; /* Centers the container */
+}
+
+/* Heading */
+.businessanalytics-page-heading {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Options grid */
+.businessanalytics-options {
+  margin-top: 20px;
+}
+
+.businessanalytics-page-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card Styles */
+.businessanalytics-page-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 15px;
+  background-color: #f1f1f1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card-first {
+  background-color: #cce7ff;
+}
+
+.card-second {
+  background-color: #ffd699;
+}
+
+.card-third {
+  background-color: #d1f7d1;
+}
+
+.card-fourth {
+  background-color: #ffcccc;
+}
+
+/* Card Inner Layout */
+.card-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Icons */
+.card_icon {
+  font-size: 30px;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+/* Icon Colors */
+.card-first .card_icon {
+  color: #2962ff;
+}
+
+.card-second .card_icon {
+  color: #ff6d00;
+}
+
+.card-third .card_icon {
+  color: #2e7d32;
+}
+
+.card-fourth .card_icon {
+  color: #d50000;
+}
+
+/* Card Titles and Text */
+.card-inner h4 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-inner p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Popups */
+.businessanalytics-page-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.businessanalytics-page-popup-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.businessanalytics-page-popup-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #007bff;
+}
+
+.businessanalytics-page-popup-content p {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.businessanalytics-schedule-meeting {
+  padding: 10px 20px;
+  background: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.businessanalytics-schedule-meeting:hover {
+  background: #218838;
+}
+
+.businessanalytics-page-popup-close {
+  padding: 10px 20px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.businessanalytics-page-popup-close:hover {
+  background: #0056b3;
+}
+
+
 
 
 /* Client Profile */
@@ -1787,6 +1958,35 @@ body {
   }
 }
 
+.clientprofile-input-container {
+  position: relative;
+}
+
+.clientprofile-page-popup {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.clientprofile-page-popup ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.clientprofile-page-popup li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.clientprofile-page-popup li:hover {
+  background-color: #f0f0f0;
+}
 
  
   /* Inprogress  Page */

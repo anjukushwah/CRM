@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { FaRegCalendarAlt, FaHistory, FaFilter, FaUserCheck } from 'react-icons/fa';
 import { 
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, 
@@ -119,3 +119,120 @@ function Businessanalytics() {
 }
 
 export default Businessanalytics;
+ */
+
+
+import React, { useState } from "react";
+import "../css/style.css";
+
+const BusinessAnalytics = () => {
+  const [popup, setPopup] = useState(null);
+
+  const openPopup = (id) => {
+    setPopup(id);
+  };
+
+  const closePopup = () => {
+    setPopup(null);
+  };
+
+  return (
+    <div className="businessanalytics-container">
+      <h1 className="businessanalytics-page-heading">Business Analytics Dashboard</h1>
+
+      <div className="businessanalytics-options">
+        <div className="businessanalytics-page-grid">
+          {/* Scenario: Market Down */}
+          <div className="businessanalytics-page-card card-first" onClick={() => openPopup(1)}>
+            <div className="card-inner">
+              <div className="card_icon">📉</div>
+              <div>
+                <h4>If Scenario: Market Down</h4>
+                <p>Schedule aggressive client meetings (2-20%) during market downturns.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Last Meeting Since 3 Months */}
+          <div className="businessanalytics-page-card card-second" onClick={() => openPopup(2)}>
+            <div className="card-inner">
+              <div className="card_icon">⏳</div>
+              <div>
+                <h4>Last Meeting Since 3 Months</h4>
+                <p>Reconnect clients not met in 3+ months. Schedule 12 meetings.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* High Net Worth Investor */}
+          <div className="businessanalytics-page-card card-third" onClick={() => openPopup(3)}>
+            <div className="card-inner">
+              <div className="card_icon">💼</div>
+              <div>
+                <h4>High Net Worth Investor</h4>
+                <p>Provide personalized services to High Net Worth Investors.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Customer Behaviour Analysis */}
+          <div className="businessanalytics-page-card card-fourth" onClick={() => openPopup(4)}>
+            <div className="card-inner">
+              <div className="card_icon">📊</div>
+              <div>
+                <h4>Customer Behaviour Analysis</h4>
+                <p>Analyze and respond to customer behaviors effectively.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Popups */}
+      {popup && (
+        <div className="businessanalytics-page-popup">
+          <div className="businessanalytics-page-popup-content">
+            {popup === 1 && (
+              <>
+                <h2>Scenario: Market Down</h2>
+                <p>
+                  During market downturns, prioritize 2-20% of key clients for aggressive meetings to maintain relationships and mitigate risks.
+                </p>
+              </>
+            )}
+            {popup === 2 && (
+              <>
+                <h2>Last Meeting Since 3 Months</h2>
+                <p>
+                  Clients who haven’t met in over 3 months require re-engagement. Schedule 12 meetings to strengthen relationships and explore new opportunities.
+                </p>
+                <button className="businessanalytics-schedule-meeting">Schedule Meeting</button>
+              </>
+            )}
+            {popup === 3 && (
+              <>
+                <h2>High Net Worth Investor</h2>
+                <p>
+                  Offer tailored services and personalized investment strategies to meet the unique needs of High Net Worth Investors.
+                </p>
+              </>
+            )}
+            {popup === 4 && (
+              <>
+                <h2>Customer Behaviour Analysis</h2>
+                <p>
+                  Analyze customer behaviors to enhance engagement and drive better outcomes. Use data-driven insights to refine strategies.
+                </p>
+              </>
+            )}
+            <button className="businessanalytics-page-popup-close" onClick={closePopup}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default BusinessAnalytics;

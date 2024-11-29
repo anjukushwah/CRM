@@ -26,107 +26,112 @@ const Clientprofile = () => {
     otherInsurances: ''
   });
 
+
   const [isGoalPopupVisible, setIsGoalPopupVisible] = useState(false);
   const [isAssetClassPopupVisible, setIsAssetClassPopupVisible] = useState(false);
-  const [selectedGoal, setSelectedGoal] = useState("");
-  const [selectedAssetClass, setSelectedAssetClass] = useState("");
-  const [popupSelections, setPopupSelections] = useState([]); 
+  const [popupSelections, setPopupSelections] = useState([]);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [selectedAge, setSelectedAge] = useState('');
-  
+  const [showAgePopup, setShowAgePopup] = useState(false); 
+  const [showAgeWithUsPopup, setShowAgeWithUsPopup] = useState(false);
+  const [showIncomePopup, setShowIncomePopup] = useState(false); 
+  const [showOccupationPopup, setShowOccupationPopup] = useState(false); 
+  const [showBehaviorPopup, setShowBehaviorPopup] = useState(false);
+  const [showMarketReactionPopup, setShowMarketReactionPopup] = useState(false);
+  const [showFamilyMemberPopup, setShowFamilyMemberPopup] = useState(false);
+  const [showTermInsurancePopup, setShowTermInsurancePopup] = useState(false);
+  const [showMediclaimPopup, setShowMediclaimPopup] = useState(false);
+  const [showCarInsurancePopup, setShowCarInsurancePopup] = useState(false);
 
-const handleChange = (e) => {
-  const { name, value, type, checked } = e.target;
 
-  if (type === 'checkbox') {
-    if (checked) {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: [...prevData[name], value],
-      }));
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    if (type === 'checkbox') {
+      if (checked) {
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: [...prevData[name], value],
+        }));
+      } else {
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: prevData[name].filter((item) => item !== value),
+        }));
+      }
     } else {
       setFormData((prevData) => ({
         ...prevData,
-        [name]: prevData[name].filter((item) => item !== value),
+        [name]: value,
       }));
     }
-  } else {
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  }
-};
-
-const handleInputClick = (goal) => {
-  if (goal === "ClientGoal") {
-    setIsGoalPopupVisible(true);
-  } else if (goal === "favoriteAssetClass") {
-    setIsAssetClassPopupVisible(true);
-  }
-};
-
-const closePopup = () => {
-  setIsGoalPopupVisible(false);
-  setIsAssetClassPopupVisible(false);
-};
-
-
-const handlePopupOptionChange = (e) => {
-  const { value, checked } = e.target;
-  if (checked) {
-    setPopupSelections((prevSelections) => [...prevSelections, value]);
-  } else {
-    setPopupSelections((prevSelections) =>
-      prevSelections.filter((option) => option !== value)
-    );
-  }
-};
-
-const handleSave = () => {
-  if (isGoalPopupVisible) {
-    setFormData((prevData) => ({
-      ...prevData,
-      clientGoal: popupSelections, 
-    }));
-    setIsGoalPopupVisible(false); 
-  } else if (isAssetClassPopupVisible) {
-    setFormData((prevData) => ({
-      ...prevData,
-      favoriteAssetClass: popupSelections, 
-    }));
-    setIsAssetClassPopupVisible(false); 
-  }
- 
-  setPopupSelections([]);
-};
-const handleCancel = () => {
-  setPopupSelections([]); 
-  if (isGoalPopupVisible) {
-    setIsGoalPopupVisible(false);
-  } else if (isAssetClassPopupVisible) {
-    setIsAssetClassPopupVisible(false);
-  }
-};
-
-
- 
-  const toggleDropdown = () => {
-    console.log("Toggling dropdown...", isDropdownVisible);  
-    setIsDropdownVisible(prevState => !prevState); 
   };
 
+  const handleInputClick = (goal) => {
+    if (goal === "ClientGoal") {
+      setIsGoalPopupVisible(true);
+    } else if (goal === "favoriteAssetClass") {
+      setIsAssetClassPopupVisible(true);
+    }
+  };
+
+  const closePopup = () => {
+    setIsGoalPopupVisible(false);
+    setIsAssetClassPopupVisible(false);
+  };
+
+  const handlePopupOptionChange = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setPopupSelections((prevSelections) => [...prevSelections, value]);
+    } else {
+      setPopupSelections((prevSelections) =>
+        prevSelections.filter((option) => option !== value)
+      );
+    }
+  };
+
+  const handleSave = () => {
+    if (isGoalPopupVisible) {
+      setFormData((prevData) => ({
+        ...prevData,
+        clientGoal: popupSelections,
+      }));
+      setIsGoalPopupVisible(false);
+    } else if (isAssetClassPopupVisible) {
+      setFormData((prevData) => ({
+        ...prevData,
+        favoriteAssetClass: popupSelections,
+      }));
+      setIsAssetClassPopupVisible(false);
+    }
+
+    setPopupSelections([]);
+  };
+
+  const handleCancel = () => {
+    setPopupSelections([]);
+    if (isGoalPopupVisible) {
+      setIsGoalPopupVisible(false);
+    } else if (isAssetClassPopupVisible) {
+      setIsAssetClassPopupVisible(false);
+    }
+  };
+
+  const toggleDropdown = () => {
+    console.log("Toggling dropdown...", isDropdownVisible);
+    setIsDropdownVisible((prevState) => !prevState);
+  };
 
   const handleAgeSelect = (age) => {
     setSelectedAge(age);
-    setIsDropdownVisible(false); 
+    setIsDropdownVisible(false);
   };
 
-  
   const handleClickOutside = (e) => {
     const dropdown = document.getElementById('dropdown-popup');
     if (dropdown && !dropdown.contains(e.target)) {
-      setIsDropdownVisible(false); 
+      setIsDropdownVisible(false);
     }
   };
 
@@ -137,12 +142,144 @@ const handleCancel = () => {
     };
   }, []);
 
-const handleSubmit = (e) => {
-  e.preventDefault(); 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted", formData);
+  };
 
-  console.log("Form submitted", formData); 
-};
-  
+  // Client Age Input component logic
+  const handleAgeInputClick = () => {
+    setShowAgePopup(!showAgePopup);
+  };
+
+  const handleAgeWithUsInputClick = () => {
+    setShowAgeWithUsPopup(!showAgeWithUsPopup); // Toggle visibility
+  };
+
+  const handleAgeSelectOption = (value) => {
+    setFormData({
+      ...formData,
+      clientAge: value,
+    });
+    setShowAgePopup(false); // Hide the popup after selection
+  };
+
+  const handleAgeWithUsSelectOption = (value) => {
+    setFormData({
+      ...formData,
+      clientAgeWithUs: value, // Set the selected value
+    });
+    setShowAgeWithUsPopup(false); // Close the popup after selection
+  };
+
+  const handleIncomeInputClick = () => {
+    setShowIncomePopup(!showIncomePopup); // Toggle visibility
+  };
+
+  // Handle dropdown selection for Annual Income
+  const handleIncomeSelectOption = (value) => {
+    setFormData({
+      ...formData,
+      clientAnnualIncome: value, // Set the selected value
+    });
+    setShowIncomePopup(false); // Close the popup after selection
+  };
+
+  const handleOccupationInputClick = () => {
+    setShowOccupationPopup(!showOccupationPopup); // Toggle visibility
+  };
+
+  // Handle dropdown selection for Occupation
+  const handleOccupationSelectOption = (value) => {
+    setFormData({
+      ...formData,
+      clientOccupation: value, // Set the selected value
+    });
+    setShowOccupationPopup(false); // Close the popup after selection
+  };
+
+  const handleBehaviorInputClick = () => {
+    setShowBehaviorPopup(!showBehaviorPopup); // Toggle visibility
+  };
+
+  // Handle 'Market Reaction' input field click
+  const handleMarketReactionInputClick = () => {
+    setShowMarketReactionPopup(!showMarketReactionPopup); // Toggle visibility
+  };
+
+  // Handle dropdown selection for Behavior
+  const handleBehaviorSelectOption = (value) => {
+    setFormData({
+      ...formData,
+      clientBehavior: value, // Set the selected value for Behavior
+    });
+    setShowBehaviorPopup(false); // Close the popup after selection
+  };
+
+  // Handle dropdown selection for Market Reaction
+  const handleMarketReactionSelectOption = (value) => {
+    setFormData({
+      ...formData,
+      clientReactsMarket: value, // Set the selected value for Market Reaction
+    });
+    setShowMarketReactionPopup(false); // Close the popup after selection
+  };
+
+  const handleFamilyMemberInputClick = () => {
+    setShowFamilyMemberPopup(!showFamilyMemberPopup);
+  };
+
+  // Handle input field click for Term Insurance
+  const handleTermInsuranceInputClick = () => {
+    setShowTermInsurancePopup(!showTermInsurancePopup);
+  };
+
+  // Handle input field click for Mediclaim
+  const handleMediclaimInputClick = () => {
+    setShowMediclaimPopup(!showMediclaimPopup);
+  };
+
+  // Handle input field click for Vehicle Insurance
+  const handleCarInsuranceInputClick = () => {
+    setShowCarInsurancePopup(!showCarInsurancePopup);
+  };
+
+  // Handle selection for Family Member
+  const handleFamilyMemberSelectOption = (value) => {
+    setFormData({
+      ...formData,
+      familyMember: value,
+    });
+    setShowFamilyMemberPopup(false); // Close the popup after selection
+  };
+
+  // Handle selection for Term Insurance
+  const handleTermInsuranceSelectOption = (value) => {
+    setFormData({
+      ...formData,
+      termInsurance: value,
+    });
+    setShowTermInsurancePopup(false); // Close the popup after selection
+  };
+
+  // Handle selection for Mediclaim
+  const handleMediclaimSelectOption = (value) => {
+    setFormData({
+      ...formData,
+      mediclaim: value,
+    });
+    setShowMediclaimPopup(false); // Close the popup after selection
+  };
+
+  // Handle selection for Vehicle Insurance
+  const handleCarInsuranceSelectOption = (value) => {
+    setFormData({
+      ...formData,
+      carInsurance: value,
+    });
+    setShowCarInsurancePopup(false); // Close the popup after selection
+  };
+
 
 return (
   <form className="clientprofile-form" onSubmit={handleSubmit}>
@@ -178,40 +315,55 @@ return (
         </div>
       </div>
   </div>
-   <div className="clientprofile-input-group">
-      <label className="clientprofile-label">Client Age</label>
-      <select
-        className="clientprofile-input"
-        name="clientAge"
-        value={formData.clientAge}
-        onChange={handleChange}
-        required
-      >
-        <option value="">Select Age Range</option>
-        <option value="Above 16" >Below 18</option>
-        <option value="18 to 25">18 to 25</option>
-        <option value="26 to 41">26 to 41</option>
-        <option value="41 to 60">41 to 60</option>
-        <option value="Above 60">Above 60</option>
-      </select>
-    </div> 
 
-    <div  className="clientprofile-input-group">
-      <label className="clientprofile-label">Client Age with Us</label>
-      <select
-        className="clientprofile-input"
-        name="clientAgeWithUs"
-        value={formData.clientAgeWithUs}
-        onChange={handleChange}
-        required
-      >
-        <option value="">Select Age with Us</option>
-        <option value="0 to 2 years">0 to 2 years</option>
-        <option value="2 to 5 years">2 to 5 years</option>
-        <option value="5 to 10 years">5 to 10 years</option>
-        <option value="Above 10 years">Above 10 years</option>
-      </select>
-    </div>
+     <div className="clientprofile-input-group">
+        <label className="clientprofile-label">Client Age</label>
+        <div className="clientprofile-input-container">
+          <input
+            className="clientprofile-input"
+            name="clientAge"
+            value={formData.clientAge || 'Select Age Range'}
+            onClick={handleAgeInputClick} 
+            readOnly
+          />
+          {showAgePopup && (
+            <div className="clientprofile-page-popup">
+              <ul>
+                <li onClick={() => handleAgeSelectOption('Below 18')}>Below 18</li>
+                <li onClick={() => handleAgeSelectOption('18 to 25')}>18 to 25</li>
+                <li onClick={() => handleAgeSelectOption('26 to 41')}>26 to 41</li>
+                <li onClick={() => handleAgeSelectOption('41 to 60')}>41 to 60</li>
+                <li onClick={() => handleAgeSelectOption('Above 60')}>Above 60</li>
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+
+<div className="clientprofile-input-group">
+        <label className="clientprofile-label">Client Age with Us</label>
+        <div className="clientprofile-input-container">
+          <input
+            className="clientprofile-input"
+            name="clientAgeWithUs"
+            value={formData.clientAgeWithUs || 'Select Age with Us'}
+            onClick={handleAgeWithUsInputClick} // Toggle popup for 'Age with Us'
+            readOnly
+          />
+          {showAgeWithUsPopup && (
+            <div className="clientprofile-page-popup">
+              <ul>
+                <li onClick={() => handleAgeWithUsSelectOption('0 to 2 years')}>0 to 2 years</li>
+                <li onClick={() => handleAgeWithUsSelectOption('2 to 5 years')}>2 to 5 years</li>
+                <li onClick={() => handleAgeWithUsSelectOption('5 to 10 years')}>5 to 10 years</li>
+                <li onClick={() => handleAgeWithUsSelectOption('Above 10 years')}>Above 10 years</li>
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+
+
 
     <div  className="clientprofile-input-group">
       <label className="clientprofile-label">Total Client AUM</label>
@@ -237,22 +389,29 @@ return (
       />
     </div>
 
-    <div  className="clientprofile-input-group">
-      <label className="clientprofile-label">Client Annual Income</label>
-      <select
-        className="clientprofile-input"
-        name="clientAnnualIncome"
-        value={formData.clientAnnualIncome}
-        onChange={handleChange}
-        required
-      >
-        <option value="">Select Annual Income Range</option>
-        <option value="Below 5 Lakhs">Below 5 Lakhs</option>
-        <option value="5 Lakhs to 10 Lakhs">5 Lakhs to 10 Lakhs</option>
-        <option value="10 Lakhs to 20 Lakhs">10 Lakhs to 20 Lakhs</option>
-        <option value="Above 20 Lakhs">Above 20 Lakhs</option>
-      </select>
-    </div>
+
+<div className="clientprofile-input-group">
+        <label className="clientprofile-label">Client Annual Income</label>
+        <div className="clientprofile-input-container">
+          <input
+            className="clientprofile-input"
+            name="clientAnnualIncome"
+            value={formData.clientAnnualIncome || 'Select Annual Income Range'}
+            onClick={handleIncomeInputClick} // Toggle popup for Annual Income
+            readOnly
+          />
+          {showIncomePopup && (
+            <div className="clientprofile-page-popup">
+              <ul>
+                <li onClick={() => handleIncomeSelectOption('Below 5 Lakhs')}>Below 5 Lakhs</li>
+                <li onClick={() => handleIncomeSelectOption('5 Lakhs to 10 Lakhs')}>5 Lakhs to 10 Lakhs</li>
+                <li onClick={() => handleIncomeSelectOption('10 Lakhs to 20 Lakhs')}>10 Lakhs to 20 Lakhs</li>
+                <li onClick={() => handleIncomeSelectOption('Above 20 Lakhs')}>Above 20 Lakhs</li>
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
 
 <div className="clientprofile-input-group">
   <label className="clientprofile-label">Client Goal</label>
@@ -336,25 +495,32 @@ return (
   )}
 </div>
 
-<div  className="clientprofile-input-group">
+<div className="clientprofile-input-group">
         <label className="clientprofile-label">Client Occupation</label>
-        <select
-         className="clientprofile-input"
-          name="clientOccupation"
-          value={formData.clientOccupation}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select Occupation</option>
-          <option value="Business">Business</option>
-          <option value="Professional">Professional</option>
-          <option value="Government Employee">Government Employee</option>
-          <option value="Private Sector Employee">Private Sector Employee</option>
-          <option value="Student">Student</option>
-          <option value="Retired">Retired</option>
-          <option value="Housewife">Housewife</option>
-        </select>
+        <div className="clientprofile-input-container">
+          <input
+            className="clientprofile-input"
+            name="clientOccupation"
+            value={formData.clientOccupation || 'Select Occupation'}
+            onClick={handleOccupationInputClick} // Toggle popup for Occupation
+            readOnly
+          />
+          {showOccupationPopup && (
+            <div className="clientprofile-page-popup">
+              <ul>
+                <li onClick={() => handleOccupationSelectOption('Business')}>Business</li>
+                <li onClick={() => handleOccupationSelectOption('Professional')}>Professional</li>
+                <li onClick={() => handleOccupationSelectOption('Government Employee')}>Government Employee</li>
+                <li onClick={() => handleOccupationSelectOption('Private Sector Employee')}>Private Sector Employee</li>
+                <li onClick={() => handleOccupationSelectOption('Student')}>Student</li>
+                <li onClick={() => handleOccupationSelectOption('Retired')}>Retired</li>
+                <li onClick={() => handleOccupationSelectOption('Housewife')}>Housewife</li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
+
 
       <div  className="clientprofile-input-group">
         <label className="clientprofile-label">First SIP Date</label>
@@ -414,33 +580,51 @@ return (
         />
       </div>
 
-      <div  className="clientprofile-input-group">
+      <div className="clientprofile-input-group">
         <label className="clientprofile-label">Client Behavior</label>
-        <select
-          name="clientBehavior"
-          value={formData.clientBehavior}
-          onChange={handleChange}
-        >
-          <option value="">Select Client Behavior</option>
-          <option value="Aggressive">Aggressive</option>
-          <option value="Moderate">Moderate</option>
-          <option value="Conservative">Conservative</option>
-        </select>
+        <div className="clientprofile-input-container">
+          <input
+            className="clientprofile-input"
+            name="clientBehavior"
+            value={formData.clientBehavior || 'Select Client Behavior'}
+            onClick={handleBehaviorInputClick} // Toggle popup for Behavior
+            readOnly
+          />
+          {showBehaviorPopup && (
+            <div className="clientprofile-page-popup">
+              <ul>
+                <li onClick={() => handleBehaviorSelectOption('Aggressive')}>Aggressive</li>
+                <li onClick={() => handleBehaviorSelectOption('Moderate')}>Moderate</li>
+                <li onClick={() => handleBehaviorSelectOption('Conservative')}>Conservative</li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
 
-      <div  className="clientprofile-input-group">
+      {/* Client Reacts with Market */}
+      <div className="clientprofile-input-group">
         <label className="clientprofile-label">Client Reacts with Market</label>
-        <select
-          name="clientReactsMarket"
-          value={formData.clientReactsMarket}
-          onChange={handleChange}
-        >
-          <option value="">Select Reaction to Market</option>
-          <option value="Positive">Positive</option>
-          <option value="Negative">Negative</option>
-          <option value="Neutral">Neutral</option>
-        </select>
+        <div className="clientprofile-input-container">
+          <input
+            className="clientprofile-input"
+            name="clientReactsMarket"
+            value={formData.clientReactsMarket || 'Select Reaction to Market'}
+            onClick={handleMarketReactionInputClick} // Toggle popup for Market Reaction
+            readOnly
+          />
+          {showMarketReactionPopup && (
+            <div className="clientprofile-page-popup">
+              <ul>
+                <li onClick={() => handleMarketReactionSelectOption('Positive')}>Positive</li>
+                <li onClick={() => handleMarketReactionSelectOption('Negative')}>Negative</li>
+                <li onClick={() => handleMarketReactionSelectOption('Neutral')}>Neutral</li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
+
 
 
      <div className="clientprofile-input-group">
@@ -511,61 +695,94 @@ return (
  
      
       
-      <div  className="clientprofile-input-group">
+<div className="clientprofile-input-group">
         <label className="clientprofile-label">Family Member</label>
-        <select
-          
-          name="familyMember"
-          value={formData.familyMember}
-          onChange={handleChange}
-        >
-          <option value="">Select Family Member</option>
-          <option value="Spouse">Spouse</option>
-          <option value="Parent">Parent</option>
-          <option value="Sibling">Sibling</option>
-          <option value="Child">Child</option>
-        </select>
+        <div className="clientprofile-input-container">
+          <input
+            className="clientprofile-input"
+            name="familyMember"
+            value={formData.familyMember || 'Select Family Member'}
+            onClick={handleFamilyMemberInputClick}
+            readOnly
+          />
+          {showFamilyMemberPopup && (
+            <div className="clientprofile-page-popup">
+              <ul>
+                <li onClick={() => handleFamilyMemberSelectOption('Spouse')}>Spouse</li>
+                <li onClick={() => handleFamilyMemberSelectOption('Parent')}>Parent</li>
+                <li onClick={() => handleFamilyMemberSelectOption('Sibling')}>Sibling</li>
+                <li onClick={() => handleFamilyMemberSelectOption('Child')}>Child</li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
 
-      <div  className="clientprofile-input-group">
+      {/* Term Insurance */}
+      <div className="clientprofile-input-group">
         <label className="clientprofile-label">Term Insurance</label>
-        <select
-          name="termInsurance"
-          value={formData.termInsurance}
-          onChange={handleChange}
-        >
-          <option value="">Select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
+        <div className="clientprofile-input-container">
+          <input
+            className="clientprofile-input"
+            name="termInsurance"
+            value={formData.termInsurance || 'Select'}
+            onClick={handleTermInsuranceInputClick}
+            readOnly
+          />
+          {showTermInsurancePopup && (
+            <div className="clientprofile-page-popup">
+              <ul>
+                <li onClick={() => handleTermInsuranceSelectOption('Yes')}>Yes</li>
+                <li onClick={() => handleTermInsuranceSelectOption('No')}>No</li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
 
-      <div  className="clientprofile-input-group">
+      {/* Mediclaim */}
+      <div className="clientprofile-input-group">
         <label className="clientprofile-label">Mediclaim</label>
-        <select
-          name="mediclaim"
-          value={formData.mediclaim}
-          onChange={handleChange}
-        >
-          <option value="">Select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
+        <div className="clientprofile-input-container">
+          <input
+            className="clientprofile-input"
+            name="mediclaim"
+            value={formData.mediclaim || 'Select'}
+            onClick={handleMediclaimInputClick}
+            readOnly
+          />
+          {showMediclaimPopup && (
+            <div className="clientprofile-page-popup">
+              <ul>
+                <li onClick={() => handleMediclaimSelectOption('Yes')}>Yes</li>
+                <li onClick={() => handleMediclaimSelectOption('No')}>No</li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
 
-      <div  className="clientprofile-input-group">
-        <label className="clientprofile-label"> Vehicle Insurance</label>
-        <select
-          name="carInsurance"
-          value={formData.carInsurance}
-          onChange={handleChange}
-        >
-          <option value="">Select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
+      {/* Vehicle Insurance */}
+      <div className="clientprofile-input-group">
+        <label className="clientprofile-label">Vehicle Insurance</label>
+        <div className="clientprofile-input-container">
+          <input
+            className="clientprofile-input"
+            name="carInsurance"
+            value={formData.carInsurance || 'Select'}
+            onClick={handleCarInsuranceInputClick}
+            readOnly
+          />
+          {showCarInsurancePopup && (
+            <div className="clientprofile-page-popup">
+              <ul>
+                <li onClick={() => handleCarInsuranceSelectOption('Yes')}>Yes</li>
+                <li onClick={() => handleCarInsuranceSelectOption('No')}>No</li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
-
       <div  className="clientprofile-input-group">
         <label className="clientprofile-label">Other Insurances</label>
         <input
